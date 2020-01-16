@@ -1,0 +1,27 @@
+---
+# Get os family to get vars for openjdk_jdk_package_name
+- name: "{{ ansible_distribution | lower }} | {{ ansible_distribution_release }} - load variables"
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: "{{ ansible_distribution | lower }} | {{ ansible_distribution_release }} - Add deb unstable repo"
+  apt_repository:
+    repo: "deb http://deb.debian.org/debian unstable main"
+    state: "present"
+    update_cache: true
+  when: ansible_distribution_release == 'buster'
+
+
+- name: "{{ ansible_distribution | lower }} | {{ ansible_distribution_release }} - Add deb-src unstable repo"
+  apt_repository:
+    repo: "deb-src http://deb.debian.org/debian unstable main"
+    state: "present"
+    update_cache: true
+  when: ansible_distribution_release == 'buster'
+
+
+- name: "{{ ansible_distribution | lower }} | {{ ansible_distribution_release }} - Install {{ openjdk_jdk_package_name }}"
+  package:
+    name: "{{ openjdk_jdk_package_name }}"
+  register: openjdk_install
+  until: openjdk_install is succeeded
+  retries: 3

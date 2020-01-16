@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: Jeremie CUADRADO
+  role_name: ansible-role-openjdk
+  description: Ansible role install Openjdk.
+  license: GPLv3
+  company: Redbeard-Consulting
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Centos
+      version:
+        - 7
+
+  galaxy_tags:
+    - development
+    - java
+
+  dependencies:
+    - src: redbeard28.bootstrap
