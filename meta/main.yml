@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Jeremie CUADRADO
-  role_name: ansible-role-openjdk
+  role_name: openjdk
   description: Ansible role install Openjdk.
   license: GPLv3
   company: Redbeard-Consulting
