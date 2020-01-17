@@ -24,6 +24,6 @@ def get_ansiblevars(host):
 
 
 # Verify if user terraform exist
-def test_opendjk(host,get_ansiblevars):
+def test_opendjk(host, get_ansiblevars):
     package = host.package("openjdk-%s-jdk-headless" % (get_ansiblevars['openjdk_version']))
     assert package.is_installed

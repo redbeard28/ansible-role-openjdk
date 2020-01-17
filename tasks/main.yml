@@ -25,3 +25,15 @@
   register: openjdk_install
   until: openjdk_install is succeeded
   retries: 3
+
+- name: "{{ ansible_distribution | lower }} | {{ ansible_distribution_release }} - Add java to PATH"
+  become: true
+  copy:
+    dest: /etc/profile.d/java.sh
+    owner: root
+    group: root
+    mode: 0644
+    content: |
+      export JAVA_HOME="{{ java_home }}"
+      export PATH="$JAVA_HOME:$PATH"
+
